@@ -1,22 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ## Core
-# 
-# > The building blocks to the UI
-
-# In[ ]:
-
-
-#| default_exp core
-
-
-# ## Imports
-
-# In[ ]:
-
-
-#| export
+from fasthtml.common import *
 import fasthtml.common as fh
 from monsterui.foundations import *
 from fasthtml.common import FastHTML, fast_app
@@ -25,26 +7,10 @@ from fastcore.all import *
 import httpx
 from pathlib import Path
 
-
-# In[ ]:
-
-
 from fasthtml.jupyter import *
 from functools import partial
 
 
-# In[ ]:
-
-
-from nbdev.showdoc import *
-
-
-# ## App
-
-# In[ ]:
-
-
-#| export
 @delegates(fh.fast_app, but=['pico'])
 def fast_app(*args, pico=False, **kwargs):
     "Create a FastHTML or FastHTMLWithLiveReload app with `bg-background text-foreground` to bodykw for frankenui themes"
@@ -53,17 +19,6 @@ def fast_app(*args, pico=False, **kwargs):
     kwargs['bodykw']['class'] = stringify((kwargs['bodykw']['class'],'bg-background text-foreground'))
     return fh.fast_app(*args, pico=pico, **kwargs)
 
-
-# In[ ]:
-
-
-assert fast_app(bodykw={'something':'test'})[0].bodykw == {'something': 'test', 'class': ' bg-background text-foreground'}
-
-
-# In[ ]:
-
-
-#| export
 @delegates(fh.FastHTML, but=['pico'])
 def FastHTML(*args, pico=False, **kwargs):
     "Create a FastHTML app and adds `bg-background text-foreground` to bodykw for frankenui themes"
@@ -74,20 +29,6 @@ def FastHTML(*args, pico=False, **kwargs):
     return fh.FastHTML(*args, pico=pico, **bodykw, **kwargs)
 
 
-# In[ ]:
-
-
-FastHTML(bodykw={'something':'test'}).bodykw
-
-
-# ## Theme / Headers
-
-# You can select a theme color to and get all the headers.
-
-# In[ ]:
-
-
-#| export
 class ThemeRadii(VEnum):
     none = 'uk-radii-none'
     sm = 'uk-radii-sm'
@@ -104,11 +45,6 @@ class ThemeFont:
     sm = 'uk-font-sm'
     default = 'uk-font-base'
 
-
-# In[ ]:
-
-
-#| export
 def _headers_theme(color, mode='auto', radii=ThemeRadii.sm, shadows=ThemeShadows.sm, font=ThemeFont.sm):
     franken_init = '''
           const __FRANKEN__ = JSON.parse(localStorage.getItem("__FRANKEN__") || "{}");
@@ -141,11 +77,6 @@ def _headers_theme(color, mode='auto', radii=ThemeRadii.sm, shadows=ThemeShadows
           htmlElement.classList.add(__FRANKEN__.font || "{font}");
     ''')
 
-
-# In[ ]:
-
-
-#| export
 HEADER_URLS = {
         'franken_css': "https://unpkg.com/franken-ui@2.0.0-internal.45/dist/css/core.min.css",
         'franken_js_core': "https://unpkg.com/franken-ui@2.0.0-internal.45/dist/js/core.iife.js",
@@ -168,11 +99,6 @@ def _download_resource(url, static_dir):
     fname.write_bytes(content)
     return (url[0], f"/{static_dir}/{fname.name}")
 
-
-# In[ ]:
-
-
-#| export
 daisy_styles = Style("""
 :root {
   --b1: from hsl(var(--background)) l c h;
@@ -203,11 +129,6 @@ daisy_styles = Style("""
 }
 """)
 
-
-# In[ ]:
-
-
-#| export
 scrollspy_style= Style('''
 .monster-navbar.navbar-bold a {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -235,10 +156,6 @@ scrollspy_style= Style('''
     to { transform: scaleX(1); }
 }
 ''')
-
-
-# In[ ]:
-
 
 #| export
 class Theme(Enum):
@@ -337,32 +254,6 @@ class Theme(Enum):
         local_urls = dict([_download_resource(url, static_dir) for url in HEADER_URLS.items()])
         return self._create_headers(local_urls, mode=mode, daisy=daisy, highlightjs=highlightjs, katex=katex, radii=radii, shadows=shadows, font=font)
 
-
-# In[ ]:
-
-
-hdrs = Theme.blue.headers()
-app = FastHTML(hdrs=hdrs)
-
-
-# In[ ]:
-
-
-app, rt = fast_app(hdrs=Theme.blue.headers())
-Show = partial(HTMX, app=app)
-
-
-# ## export -
-
-# In[ ]:
-
-
-#| hide
-import nbdev; nbdev.nbdev_export()
-
-
-# In[ ]:
-
-
+serve()
 
 

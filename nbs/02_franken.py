@@ -1,24 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ## Frankenui UI
-# 
-# > Helpers and components for DaisyUI style stuff
-
-# Based on the minimal context shown, FrankenUI appears to be a collection of helper utilities and components designed to work with DaisyUI styling. DaisyUI is a popular plugin for Tailwind CSS that provides pre-built components and utility classes.
-# 
-# However, I don't see enough context to provide specific details about what FrankenUI actually includes or implements. Would you like me to help explore its specific features or implementation?
-
-# In[ ]:
-
-
-#| default_exp franken
-
-
-# In[1]:
-
-
-#| export
 import fasthtml.common as fh
 from monsterui.foundations import *
 from fasthtml.common import Div, P, Span, FT
@@ -39,12 +18,7 @@ from fasthtml.components import Uk_input_range
 import fasthtml.components as fh_comp
 
 
-# In[ ]:
-
-
-#| hide
 from fasthtml.jupyter import *
-from IPython.display import HTML, Markdown, Image
 from monsterui.core import Theme
 
 if 'server' in globals(): server.stop()
