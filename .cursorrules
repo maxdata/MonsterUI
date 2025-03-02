@@ -1,0 +1,8 @@
+LLM context files
+Using LLMs for development is a best practice way to get started and explore. While LLMs cannot code for you, they can be helpful assistants. You must check, refactor, test, and vet any code any LLM generates for you - but they are helpful productivity tools. Take a look inside the llms.txt file to see links to particularly useful context files!
+
+llms.txt: Links to what is included
+llms-ctx.txt: MonsterUI Documentation Pages
+API list: API list for MonsterUI (included in llms-ctx.txt)
+llms-ctx-full.txt: Full context that includes all api reference pages as markdown
+In addition you can add /md (for markdown) to a url to get a markdown representation and /rmd for rendered markdown representation (nice for looking to see what would be put into context.)
