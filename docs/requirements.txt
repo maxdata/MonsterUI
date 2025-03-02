@@ -1,0 +1,12 @@
+toolslm
+python-fasthtml
+pandas
+plotly
+monsterui @ git+https://github.com/AnswerDotAI/monsterui
+fastcore
+fh_matplotlib
+numpy
+matplotlib
+pysymbol_llm @ git+https://github.com/AnswerDotAI/pysymbol-llm.git
+mistletoe
+lxml

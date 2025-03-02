@@ -1,4 +1,3 @@
-from fasthtml.common import *
 import fasthtml.common as fh
 from monsterui.foundations import *
 from fasthtml.common import FastHTML, fast_app
